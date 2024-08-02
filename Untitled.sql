@@ -42,4 +42,41 @@ select sales from carorders order by sales asc limit 1
 
 select sales from carorders order by sales desc limit 1  
 
-select count(sales) , sum(sales) , min(sales) , max(sales) , avg(sales) from carorders
+select count(sales) , sum(sales) , min(sales) , max(sales) , avg(sales) from carorders 
+
+SELECT shipmode, SUM(sales) AS total_sales
+FROM carorders
+GROUP BY shipmode
+
+SELECT product, AVG(profit) AS average_profit
+FROM carorders
+GROUP BY product
+
+SELECT shipmode, SUM(quantity) AS total_quantity
+FROM carorders
+GROUP BY shipmode
+HAVING SUM(sales) > 5000
+
+SELECT product, COUNT(*) AS order_count
+FROM carorders
+GROUP BY product
+HAVING AVG(discount) > 0.1
+
+SELECT customerid, MAX(sales) AS max_sales
+FROM carorders
+GROUP BY customerid
+
+SELECT shipmode, SUM(profit) AS total_profit
+FROM carorders
+GROUP BY shipmode
+HAVING COUNT(*) > 3
+
+SELECT product, MIN(profit) AS min_profit
+FROM carorders
+GROUP BY product
+HAVING SUM(sales) > 10000
+
+SELECT customerid, AVG(sales) AS average_sales
+FROM carorders
+GROUP BY customerid
+HAVING SUM(quantity) > 5
